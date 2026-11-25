@@ -1,5 +1,15 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": "p1",
+      "model": "Evil Eye",
+      "bg": "Pine Green",
+      "sym": "Human Scull",
+      "gram": 28.0,
+      "img": "https://api.telegram.org/file/bot9236429831:AAGQFgLV5q4UmFuI_15L_4x17kaBcisfnQk/photos/file_0.jpg",
+      "link": "t.me/nft/EvilEye-69030"
+    }
+  ],
   "orders_status": {},
   "wallets_status": {},
   "ton_override": 272000
