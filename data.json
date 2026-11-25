@@ -11,6 +11,8 @@
     }
   ],
   "orders_status": {},
-  "wallets_status": {},
+  "wallets_status": {
+    "W-MWW0WNI0": "تایید شده"
+  },
   "ton_override": 272000
 }
