@@ -1,6 +1,15 @@
 {
   "products": [
     {
+      "id": "p2",
+      "model": "Candy Cane",
+      "bg": "Navy Blue",
+      "sym": "Nordic Wolf",
+      "gram": 7.0,
+      "img": "https://api.telegram.org/file/bot9142466635:AAH6e9Ed9z2Il5uxHydVVq71hrblmY6DYac/photos/file_1.jpg",
+      "link": "https://t.me/nft/CandyCane-147373"
+    },
+    {
       "id": "p1",
       "model": "Mirage Lamp",
       "bg": "Carmine",
