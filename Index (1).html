@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ZENIX SHOP | فروشگاه NFT تلگرام</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070b16;--card:#111827cc;--line:#1f2a44;--txt:#eef2ff;--mut:#8b93b0;--cyan:#00e5ff;--vio:#8b5cf6}
+body{background:radial-gradient(600px 300px at 50% -50px,#1a2b5a55,transparent),var(--bg);color:var(--txt);font-family:Vazirmatn,Tahoma,sans-serif;min-height:100vh;padding-bottom:92px}
+header{position:sticky;top:0;z-index:20;background:#070b16ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:1px}.logo span{color:var(--cyan)}
+.rate{font-size:12px;color:var(--mut);border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+.rate b{color:var(--cyan)}
+main{max-width:520px;margin:0 auto;padding:14px}
+.page{display:none}.page.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:360px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;content-visibility:auto;contain-intrinsic-size:320px}
+.card img{width:100%;height:180px;object-fit:cover;display:block;background:#0b1226}
+.info{padding:10px}
+.model{font-weight:800;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub{font-size:12px;color:var(--mut);margin-top:4px}
+.price{margin-top:8px;font-size:13px}.price b{color:var(--cyan);font-size:15px}
+.gram{font-size:12px;color:#c4b5fd}
+.btns{display:flex;gap:8px;margin-top:10px}
+.btn{flex:1;border:0;border-radius:12px;padding:10px;font-weight:800;cursor:pointer;font-family:inherit}
+.buy{background:linear-gradient(135deg,var(--cyan),var(--vio));color:#04121a}
+.view{background:#1e293b;color:#fff;border:1px solid var(--line)}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#0a1020f2;border-top:1px solid var(--line);display:flex;backdrop-filter:blur(12px)}
+nav button{flex:1;background:none;border:0;color:var(--mut);padding:10px 2px 12px;font-size:11px;font-family:inherit;cursor:pointer}
+nav button.active{color:var(--cyan)}
+nav button i{display:block;font-size:20px;font-style:normal;margin-bottom:2px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}
+.inp{width:100%;background:#0b1226;border:1px solid var(--line);border-radius:12px;color:#fff;padding:12px;margin-top:8px;font-family:inherit;direction:ltr;text-align:center}
+.lbl{font-size:13px;color:var(--mut)}
+.warn{background:#f59e0b18;border:1px solid #f59e0b55;color:#fcd34d;border-radius:12px;padding:10px;font-size:12px;margin-top:10px;line-height:1.9}
+.big{background:linear-gradient(135deg,#00e5ff,#8b5cf6);color:#04121a;border:0;width:100%;padding:13px;border-radius:14px;font-weight:900;margin-top:12px;cursor:pointer;font-family:inherit}
+.ghost{background:#1e293b;color:#fff;border:1px solid var(--line);width:100%;padding:12px;border-radius:14px;margin-top:8px;cursor:pointer;font-family:inherit}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.s0{background:#f59e0b22;color:#fbbf24;border:1px solid #f59e0b55}.s1{background:#22c55e22;color:#4ade80;border:1px solid #22c55e55}.s2{background:#ef444422;color:#fca5a5;border:1px solid #ef444455}
+.bankcard{width:100%;aspect-ratio:1.586;background:linear-gradient(135deg,#1e3a8a,#6d28d9,#0ea5e9);border-radius:16px;padding:18px;margin-top:12px;direction:ltr;text-align:center;box-shadow:0 10px 30px #0008}
+.bankcard .num{font-size:20px;letter-spacing:2px;font-weight:900;margin-top:22px}
+.bankcard .own{margin-top:12px;font-size:14px;opacity:.9}
+.order{display:flex;gap:10px}.order img{width:84px;height:84px;border-radius:12px;object-fit:cover}
+a.link{color:var(--cyan);text-decoration:none;word-break:break-all}
+.modal{position:fixed;inset:0;background:#000a;display:none;z-index:50;padding:16px}
+.modal.open{display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:#0f172a;border:1px solid var(--line);border-radius:20px 20px 0 0;max-width:520px;width:100%;padding:18px;max-height:88vh;overflow:auto}
+.preview{width:100%;border-radius:12px;margin-top:10px}
+.copy{display:flex;gap:8px;align-items:center;justify-content:space-between}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">ZENIX <span>SHOP</span></div>
+<div class="rate">تون: <b id="tonRate">290,000</b> تومان</div>
+</header>
+<main>
+<section id="p-shop" class="page active">
+<div class="box" style="display:flex;justify-content:space-between;align-items:center">
+<div><b>فروشگاه</b><div class="lbl">NFT های موجود • قیمت = گرام ×۲</div></div>
+<button onclick="adminAdd()" style="background:none;border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:6px 10px;font-family:inherit">＋ ادمین</button>
+</div>
+<div id="shopGrid" class="grid"></div>
+</section>
+<section id="p-cart" class="page"><div class="box"><b>سبد خرید</b><div class="lbl">هر محصول بعد ۳ روز خودکار حذف می‌شود</div></div><div id="cartList"></div></section>
+<section id="p-orders" class="page"><div class="box"><b>سفارش‌ها</b><div class="lbl" id="ordersCount"></div></div><div id="ordersList"></div></section>
+<section id="p-wallet" class="page">
+<div class="box"><div class="lbl">موجودی کیف پول</div><div style="font-size:28px;font-weight:900" id="balance">0 تومان</div><button class="big" onclick="openWallet()">افزایش موجودی</button></div>
+<div class="box"><b>تاریخچه کیف پول</b><div id="walletHist" style="margin-top:8px"></div></div>
+</section>
+<section id="p-support" class="page">
+<div class="box"><b>پشتیبانی</b><div class="lbl">فقط برای دیدن آیدی‌ها و حل مشکل با ادمین</div>
+<div class="box copy" style="margin-top:10px"><span>ادمین: <b dir="ltr">@ZENIX_ADMIN1</b></span><button class="view btn" onclick="openTg('ZENIX_ADMIN1')">پیام</button></div>
+<div class="box copy"><span>کانال: <b dir="ltr">@ZENIX_SHOP_ON</b></span><button class="view btn" onclick="openTg('ZENIX_SHOP_ON')">عضویت</button></div>
+</div>
+</section>
+</main>
+<nav>
+<button data-p="p-shop" class="active" onclick="go('p-shop',this)"><i>🏬</i>فروشگاه</button>
+<button data-p="p-cart" onclick="go('p-cart',this)"><i>🛒</i>سبد خرید</button>
+<button data-p="p-orders" onclick="go('p-orders',this)"><i>📦</i>سفارش‌ها</button>
+<button data-p="p-wallet" onclick="go('p-wallet',this)"><i>👛</i>کیف پول</button>
+<button data-p="p-support" onclick="go('p-support',this)"><i>🎧</i>پشتیبانی</button>
+</nav>
+<div id="modal" class="modal"><div class="sheet" id="sheet"></div></div>
+<script>
+const CONFIG={BOT_TOKEN:"9142466635:AAH6e9Ed9z2Il5uxHydVVq71hrblmY6DYac",ADMIN_ID:"8806275134",DATA_URL:"https://psrkkwny3-gif.github.io/zenix-shop/data.json",CARD:"6219861854078622",OWNER:"ساواش رسولی",MIN:200000,TON_DEF:290000};
+let TON=CONFIG.TON_DEF, PRODUCTS=[], REMOTE={orders_status:{},wallets_status:{},ton_override:null};
+const $=id=>document.getElementById(id);
+const tg=(window.Telegram&&Telegram.WebApp)?Telegram.WebApp:null; if(tg)tg.expand();
+const uid=()=> (tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user)?tg.initDataUnsafe.user.id:"web-"+(localStorage.getItem("zx_dev")||(localStorage.setItem("zx_dev","u"+Date.now().toString(36)),localStorage.getItem("zx_dev")));
+const fmt=n=>Number(n||0).toLocaleString("fa-IR")+" تومان";
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+function go(id,el){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id).classList.add("active");document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));if(el)el.classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function openTg(u){window.open("https://t.me/"+u,"_blank")}
+async function fetchTon(){try{const r=await fetch("https://apiv2.nobitex.ir/market/stats?srcCurrency=ton&dstCurrency=rls");const j=await r.json();let p=j.stats&&j.stats["ton-rls"]?Number(j.stats["ton-rls"].latest):0;if(p>10000){TON=Math.round(p/10);}}catch{} if(REMOTE.ton_override)TON=REMOTE.ton_override; $("tonRate").textContent=TON.toLocaleString("fa-IR")}
+async function loadRemote(){try{const r=await fetch(CONFIG.DATA_URL+"?t="+Date.now(),{cache:"no-store"});if(r.ok){REMOTE=await r.json();if(REMOTE.products&&REMOTE.products.length)PRODUCTS=REMOTE.products;}}catch{} if(!PRODUCTS.length){PRODUCTS=load("zx_custom",[]); if(!PRODUCTS.length)PRODUCTS=[{id:"demo1",model:"WitchHat-41360",bg:"Midnight",sym:"Witch",gram:2,img:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9db.png",link:"http://t.me/nft/WitchHat-41360"},{id:"demo2",model:"DurovCap-1021",bg:"Gold",sym:"Cap",gram:3.5,img:"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f451.png",link:"http://t.me/nft/DurovCap-1021"}];}}
+const toman=p=>Math.round((p.gram*2)*TON);
+function renderShop(){const g=$("shopGrid");g.innerHTML="";PRODUCTS.forEach(p=>{const t=toman(p);const d=document.createElement("div");d.className="card";d.innerHTML='<img loading="lazy" decoding="async" src="'+p.img+'"><div class="info"><div class="model">'+p.model+'</div><div class="sub">بک‌گراند: '+(p.bg||"-")+' • نماد: '+(p.sym||"-")+'</div><div class="gram">'+(p.gram*2).toLocaleString("fa-IR")+' گرام (دوبرابر)</div><div class="price"><b>'+t.toLocaleString("fa-IR")+' تومان</b></div><div class="btns"><button class="btn buy" onclick="buy(\''+p.id+'\')">خرید</button><button class="btn view" onclick="window.open(\''+p.link+'\',\'_blank\')">مشاهده</button></div></div>';g.appendChild(d)});renderCart();renderOrders();renderWallet()}
+function cleanCart(){let c=load("zx_cart",[]);const n=Date.now();c=c.filter(x=>n-x.at<3*24*3600*1000);save("zx_cart",c);return c}
+function renderCart(){let c=cleanCart();const w=$("cartList");w.innerHTML=c.length?"":"<div class='box'>سبد خالی است</div>";c.forEach(x=>{const p=PRODUCTS.find(y=>y.id===x.id);if(!p)return;const d=document.createElement("div");d.className="box order";d.innerHTML='<img loading="lazy" src="'+p.img+'"><div><b>'+p.model+'</b><div class="lbl">'+toman(p).toLocaleString("fa-IR")+' تومان</div><button class="ghost" onclick="delCart(\''+x.id+'\')">حذف</button> <button class="big" style="margin-top:6px" onclick="buy(\''+p.id+'\')">ادامه خرید</button></div>';w.appendChild(d)})}
+function delCart(id){save("zx_cart",cleanCart().filter(x=>x.id!==id));renderCart()}
+function openM(h){$("sheet").innerHTML=h;$("modal").classList.add("open")}
+function closeM(){$("modal").classList.remove("open")}
+$("modal").onclick=e=>{if(e.target.id==="modal")closeM()};
+function buy(id){let c=cleanCart();if(!c.find(x=>x.id===id)){c.push({id,at:Date.now()});save("zx_cart",c)} const p=PRODUCTS.find(x=>x.id===id);openM('<h3>خرید '+p.model+'</h3><div class="lbl">محصول به سبد خرید رفت و ۳ روز نگه داشته می‌شود</div><label class="lbl">نام کاربری تلگرام با @</label><input id="un" class="inp" placeholder="@username" dir="ltr"><div class="warn">مسئولیت اشتباه وارد کردن نام کاربری برعهده شماست. اگر اشتباه بنویسید هیچ راه برگشتی وجود ندارد.</div><button class="big" onclick="pay(\''+id+'\')">پرداخت از کیف پول • '+toman(p).toLocaleString("fa-IR")+' تومان</button><button class="ghost" onclick="closeM()">بستن</button>')}
+async function pay(id){const un=($("un").value||"").trim();if(!un.startsWith("@")||un.length<5){alert("نام کاربری را با @ درست وارد کنید");return} const p=PRODUCTS.find(x=>x.id===id);const price=toman(p);let bal=load("zx_bal",0);if(bal<price){closeM();alert("لطفاً کیف پول خود را شارژ کنید.");go("p-wallet");return} bal-=price;save("zx_bal",bal);save("zx_cart",cleanCart().filter(x=>x.id!==id));const code="ZX-"+Date.now().toString(36).toUpperCase();let ord=load("zx_orders",[]);const o={code,pid:p.id,model:p.model,bg:p.bg,sym:p.sym,img:p.img,link:p.link,price,gram:p.gram*2,user:un,status:"در صف",date:new Date().toLocaleString("fa-IR"),tgid:String(uid())};ord.unshift(o);save("zx_orders",ord);sendOrder(o);openM('<h3>سفارش ثبت شد ✅</h3><div class="box">کد پیگیری: <b dir="ltr">'+code+'</b><br>وضعیت: <span class="badge s0">در صف</span><br><br>سفارش شما تا ۵ ساعت آینده، انشاالله تکمیل خواهد شد<br><br>لینک NFT: <a class="link" href="'+p.link+'" target="_blank">'+p.link+'</a></div><button class="big" onclick="closeM();go(\'p-orders\',document.querySelector(\'[data-p=p-orders]\'))">رفتن به سفارش‌ها</button>');renderCart();renderOrders();renderWallet()}
+async function sendOrder(o){if(CONFIG.BOT_TOKEN.includes("PUT"))return;const t='🛒 سفارش جدید\nکد: '+o.code+'\nمدل: '+o.model+'\nبک‌گراند: '+o.bg+'\nنماد: '+o.sym+'\n'+o.gram+' گرام / '+o.price+' تومان\nیوزر خریدار: '+o.user+'\nآیدی تلگرام: '+o.tgid+'\nلینک: '+o.link+'\nبرای تایید: /ok '+o.code+' | لغو: /cancel '+o.code;fetch('https://api.telegram.org/bot'+CONFIG.BOT_TOKEN+'/sendMessage',{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:CONFIG.ADMIN_ID,text:t})}).catch(()=>{})}
+function renderOrders(){let ord=load("zx_orders",[]);$("ordersCount").textContent="تعداد: "+ord.length.toLocaleString("fa-IR");const w=$("ordersList");w.innerHTML=ord.length?"":"<div class='box'>سفارشی نداری</div>";ord.forEach(o=>{const st=REMOTE.orders_status[o.code]||o.status;let cls=st.includes("تکمیل")?"s1":st.includes("لغو")?"s2":"s0";const d=document.createElement("div");d.className="box order";d.innerHTML='<img loading="lazy" src="'+o.img+'"><div><b>'+o.model+'</b><div class="lbl">'+o.price.toLocaleString("fa-IR")+' تومان • '+o.user+'</div><div class="lbl">کد: <span dir="ltr">'+o.code+'</span></div><span class="badge '+cls+'">'+st+'</span><br><a class="link" href="'+o.link+'" target="_blank">مشاهده هدیه</a></div>';w.appendChild(d)})}
+function renderWallet(){$("balance").textContent=fmt(load("zx_bal",0));let h=load("zx_whist",[]);h.forEach(x=>{if(REMOTE.wallets_status[x.code]==="تایید شده"&&x.status!=="تایید شده"){x.status="تایید شده";let b=load("zx_bal",0);if(!x.credited){b+=x.amount;x.credited=true;save("zx_bal",b)}}});save("zx_whist",h);const w=$("walletHist");w.innerHTML=h.length?"":"<div class='lbl'>تاریخی نیست</div>";h.forEach(x=>{const st=REMOTE.wallets_status[x.code]||x.status;w.innerHTML+='<div class="box" style="margin-top:8px">کد: <span dir="ltr">'+x.code+'</span> • '+x.amount.toLocaleString("fa-IR")+' تومان<br><span class="badge '+(st.includes("تایید")?"s1":"s0")+'">'+st+'</span> <span class="lbl">'+x.date+'</span></div>'})}
+function openWallet(){openM('<h3>شارژ کیف پول</h3><div class="lbl">مبلغ به تومان • حداقل '+CONFIG.MIN.toLocaleString("fa-IR")+'</div><input id="amt" class="inp" inputmode="numeric" placeholder="200000"><button class="big" onclick="walletNext()">بعدی</button>')}
+function walletNext(){const v=Number(($("amt").value||"").replace(/\D/g,""));if(v<CONFIG.MIN){alert("حداقل 200,000 تومان");return}openM('<h3>واریز به کارت</h3><div class="lbl">لطفاً مبلغ '+v.toLocaleString("fa-IR")+' را به شماره کارت زیر واریز نمایید.<br>توجه: نباید حتی یک ریال کمتر و نه زیادتر واریز کنید.</div><div class="bankcard"><div style="font-size:12px">BANK CARD</div><div class="num">6219 8618 5407 8622</div><div class="own">ساواش رسولی</div></div><button class="big" onclick="askReceipt('+v+')">واریز کردم</button>')}
+function askReceipt(v){openM('<h3>آپلود فیش • '+v.toLocaleString("fa-IR")+' تومان</h3><input type="file" id="f" accept="image/*" class="inp"><div id="pv"></div><button class="big" onclick="sendReceipt('+v+')">ارسال</button>');document.getElementById("f").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("pv").innerHTML='<img class="preview" src="'+r.result+'">'};r.readAsDataURL(f)}}
+async function sendReceipt(v){const f=document.getElementById("f").files[0];if(!f){alert("عکس فیش را انتخاب کن");return} const code="W-"+Date.now().toString(36).toUpperCase();let h=load("zx_whist",[]);h.unshift({code,amount:v,status:"در صف",date:new Date().toLocaleString("fa-IR"),tgid:String(uid())});save("zx_whist",h);if(!CONFIG.BOT_TOKEN.includes("PUT")){const fd=new FormData();fd.append("chat_id",CONFIG.ADMIN_ID);fd.append("photo",f);fd.append("caption",'💳 درخواست شارژ\nکد: '+code+'\nمبلغ: '+v+' تومان\nکاربر: '+String(uid())+'\nتایید: /approve '+code);fetch('https://api.telegram.org/bot'+CONFIG.BOT_TOKEN+'/sendPhoto',{method:"POST",body:fd}).catch(()=>{})} openM('<h3>ثبت شد ✅</h3><div class="box">کد پیگیری: <b dir="ltr">'+code+'</b><br>وضعیت: <span class="badge s0">در صف</span></div><button class="big" onclick="closeM();renderWallet();go(\'p-wallet\')">بازگشت</button>');renderWallet()}
+function adminAdd(){const pw=prompt("رمز ادمین (آیدی عددی):");if(pw!=="8806275134")return;const m=prompt("مدل NFT:");if(!m)return;const bg=prompt("بک‌گراند:")||"";const sy=prompt("نماد:")||"";const gr=Number(prompt("قیمت گرام در مینی‌اپ دوست (مثل 2):")||"0");const img=prompt("لینک عکس:")||"";const link=prompt("لینک NFT مثل http://t.me/nft/...:")||"";let c=load("zx_custom",[]);c.unshift({id:"c"+Date.now(),model:m,bg,sym:sy,gram:gr,img,link});save("zx_custom",c);PRODUCTS=c.concat(PRODUCTS);renderShop();alert("اضافه شد. قیمت نهایی: "+((gr*2)*TON).toLocaleString("fa-IR")+" تومان")}
+(async()=>{await loadRemote();await fetchTon();renderShop();setInterval(async()=>{await fetchTon();await loadRemote();renderShop()},60000)})();
+</script>
+</body>
+</html>
